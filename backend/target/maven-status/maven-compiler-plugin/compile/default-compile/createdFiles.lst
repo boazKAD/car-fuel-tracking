@@ -1,0 +1,7 @@
+com\fuel\tracking\model\Car.class
+com\fuel\tracking\model\FuelStats.class
+com\fuel\tracking\dto\AddFuelRequest.class
+com\fuel\tracking\model\FuelStats$Builder.class
+com\fuel\tracking\dto\CreateCarRequest.class
+com\fuel\tracking\model\FuelEntry.class
+com\fuel\tracking\BackendApplication.class

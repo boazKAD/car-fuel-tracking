@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: car-fuel-tracking-backend
+
+logging:
+  level:
+    com.fuel.tracking: DEBUG
+    org.springframework.web: INFO
