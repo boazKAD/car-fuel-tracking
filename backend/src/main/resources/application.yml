@@ -6,8 +6,26 @@ server:
 spring:
   application:
     name: car-fuel-tracking-backend
+  
+  # Jackson configuration
+  jackson:
+    serialization:
+      indent-output: true  # Pretty print JSON
+    default-property-inclusion: non_null
 
+# Logging configuration
 logging:
   level:
     com.fuel.tracking: DEBUG
     org.springframework.web: INFO
+    org.springframework.boot.autoconfigure: WARN
+  
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Server configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
