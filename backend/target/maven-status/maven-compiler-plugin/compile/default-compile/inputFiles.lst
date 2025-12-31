@@ -7,6 +7,7 @@ D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\reposito
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\repository\InMemoryFuelEntryRepository.java
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\mapper\FuelMapper.java
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\dto\FuelEntryResponse.java
+D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\servlet\FuelStatsServlet.java
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\controller\FuelController.java
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\BackendApplication.java
 D:\Code-hills\car-fuel-tracking\backend\src\main\java\com\fuel\tracking\exception\ValidationException.java

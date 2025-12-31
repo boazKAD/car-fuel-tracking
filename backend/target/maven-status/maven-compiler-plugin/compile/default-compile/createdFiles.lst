@@ -19,6 +19,7 @@ com\fuel\tracking\repository\CarRepository.class
 com\fuel\tracking\mapper\CarMapper.class
 com\fuel\tracking\service\CarService.class
 com\fuel\tracking\service\CarService$CarNotFoundException.class
+com\fuel\tracking\servlet\FuelStatsServlet.class
 com\fuel\tracking\exception\ValidationException.class
 com\fuel\tracking\service\FuelService.class
 com\fuel\tracking\model\FuelEntry.class
