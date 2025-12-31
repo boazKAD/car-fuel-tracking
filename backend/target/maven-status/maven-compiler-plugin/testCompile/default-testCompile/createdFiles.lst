@@ -1,0 +1,3 @@
+com\fuel\tracking\controller\FuelControllerIntegrationTest.class
+com\fuel\tracking\controller\CarControllerIntegrationTest.class
+com\fuel\tracking\service\FuelServiceTest.class
