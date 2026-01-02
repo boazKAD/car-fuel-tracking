@@ -1,1 +1,12 @@
+com\fuel\tracking\cli\dto\ApiResponse.class
+com\fuel\tracking\cli\dto\CreateCarCommand.class
+com\fuel\tracking\cli\client\ApiClient.class
+com\fuel\tracking\cli\CommandParser.class
+com\fuel\tracking\cli\CliApplication$1.class
+com\fuel\tracking\cli\CommandParser$Command.class
+com\fuel\tracking\cli\dto\AddFuelCommand.class
+com\fuel\tracking\cli\dto\FuelStatsResponse.class
 com\fuel\tracking\cli\CliApplication.class
+com\fuel\tracking\cli\client\ApiClient$ApiClientException.class
+com\fuel\tracking\cli\dto\CarResponse.class
+com\fuel\tracking\cli\CommandParser$CommandType.class

@@ -2,7 +2,6 @@ package com.fuel.tracking.controller;
 
 import com.fuel.tracking.dto.AddFuelRequest;
 import com.fuel.tracking.dto.ApiResponse;
-import com.fuel.tracking.dto.FuelEntryResponse;
 import com.fuel.tracking.dto.FuelStatsResponse;
 import com.fuel.tracking.mapper.FuelMapper;
 import com.fuel.tracking.model.FuelEntry;
@@ -12,9 +11,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/cars/{carId}/fuel")
@@ -31,17 +27,15 @@ public class FuelController {
      * Add a fuel entry for a specific car
      */
     @PostMapping
-    public ResponseEntity<ApiResponse<FuelEntryResponse>> addFuelEntry(
+    public ResponseEntity<ApiResponse<Object>> addFuelEntry(
             @PathVariable("carId") Long carId,
             @Valid @RequestBody AddFuelRequest request) {
 
         FuelEntry fuelEntry = FuelMapper.toEntity(request);
-        FuelEntry createdEntry = fuelService.addFuelEntry(carId, fuelEntry);
-
-        FuelEntryResponse response = mapToFuelEntryResponse(createdEntry);
+        fuelService.addFuelEntry(carId, fuelEntry);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success("Fuel entry added successfully", response));
+                .body(ApiResponse.success("Fuel entry added successfully"));
     }
 
     /**
@@ -59,34 +53,8 @@ public class FuelController {
     }
 
     /**
-     * Additional endpoint: Get all fuel entries for a car (optional)
+     * Helper method for mapping FuelStats to DTO
      */
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<FuelEntryResponse>>> getFuelEntries(
-            @PathVariable("carId") Long carId) {
-
-        List<FuelEntry> entries = fuelService.getFuelEntriesForCar(carId);
-
-        List<FuelEntryResponse> response = entries.stream()
-                .map(this::mapToFuelEntryResponse)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(ApiResponse.success(response));
-    }
-
-    /**
-     * Helper methods for mapping entities to DTOs
-     */
-    private FuelEntryResponse mapToFuelEntryResponse(FuelEntry entry) {
-        return new FuelEntryResponse(
-                entry.getId(),
-                entry.getLiters(),
-                entry.getPricePerLiter(),
-                entry.getTotalCost(),
-                entry.getOdometer(),
-                entry.getTimestamp());
-    }
-
     private FuelStatsResponse mapToFuelStatsResponse(FuelStats stats) {
         return new FuelStatsResponse(
                 stats.getTotalFuelLiters(),
