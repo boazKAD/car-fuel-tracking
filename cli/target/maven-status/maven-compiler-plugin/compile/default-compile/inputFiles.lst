@@ -1,1 +1,8 @@
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\dto\ApiResponse.java
 D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\CliApplication.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\dto\AddFuelCommand.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\dto\CreateCarCommand.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\dto\CarResponse.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\dto\FuelStatsResponse.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\client\ApiClient.java
+D:\Code-hills\car-fuel-tracking\cli\src\main\java\com\fuel\tracking\cli\CommandParser.java
