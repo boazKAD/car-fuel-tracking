@@ -13,7 +13,6 @@ dependency-reduced-pom.xml
 .classpath
 .project
 .settings/
-.vscode/
 *.swp
 *.swo
 
@@ -38,3 +37,7 @@ logs/
 
 # Test files
 TestConnection.*
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
