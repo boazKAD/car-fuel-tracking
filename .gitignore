@@ -1,5 +1,6 @@
 # Maven
 target/
+**/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -31,3 +32,9 @@ logs/
 
 # Temp files
 *.tmp
+
+# Compiled class files
+*.class
+
+# Test files
+TestConnection.*
