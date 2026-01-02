@@ -77,7 +77,8 @@ public class FuelService {
 
     /**
      * Calculate average fuel consumption in L/100km
-     * Formula: (total_fuel_used / total_distance) * 100
+     * Formula: Average of segment consumptions
+     * Each segment: (fuel_used / distance) * 100
      * Requires at least 2 fuel entries with valid odometer readings
      */
     private double calculateAverageConsumption(List<FuelEntry> fuelEntries) {
@@ -90,10 +91,10 @@ public class FuelService {
                 .sorted(Comparator.comparing(FuelEntry::getOdometer))
                 .toList();
 
-        double totalFuelUsed = 0;
-        double totalDistance = 0;
+        double totalConsumption = 0.0;
+        int validSegments = 0;
 
-        // Calculate fuel used between consecutive fill-ups
+        // Calculate consumption for each segment and average them
         for (int i = 1; i < sortedEntries.size(); i++) {
             FuelEntry previous = sortedEntries.get(i - 1);
             FuelEntry current = sortedEntries.get(i);
@@ -103,18 +104,19 @@ public class FuelService {
 
             // Only include valid segments (positive distance)
             if (distance > 0) {
-                totalDistance += distance;
-                totalFuelUsed += fuelUsed;
+                double segmentConsumption = (fuelUsed / distance) * 100;
+                totalConsumption += segmentConsumption;
+                validSegments++;
             }
         }
 
         // Avoid division by zero
-        if (totalDistance == 0) {
+        if (validSegments == 0) {
             return 0.0;
         }
 
-        // Calculate consumption in L/100km
-        return (totalFuelUsed / totalDistance) * 100;
+        // Return average of segment consumptions
+        return totalConsumption / validSegments;
     }
 
     private void validateFuelEntry(FuelEntry fuelEntry) {

@@ -53,21 +53,22 @@ public class GlobalExceptionHandler {
      * Handle @Valid annotation validation errors
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationExceptions(
+    public ResponseEntity<ApiResponse<Object>> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
 
-        Map<String, String> errors = new HashMap<>();
+        // Collect all validation errors into a single message
+        StringBuilder errorMessage = new StringBuilder();
         ex.getBindingResult().getFieldErrors()
-                .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+                .forEach(error -> {
+                    if (errorMessage.length() > 0) {
+                        errorMessage.append("; ");
+                    }
+                    errorMessage.append(error.getDefaultMessage());
+                });
 
-        // Use the new error method that accepts Object
-        ApiResponse<Map<String, String>> response = new ApiResponse<>(
-                false,
-                "Validation failed",
-                errors);
-
+        // Return error response with error field
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(response);
+                .body(ApiResponse.error("Validation failed", errorMessage.toString()));
     }
 
     /**

@@ -2,6 +2,7 @@ package com.fuel.tracking.controller;
 
 import com.fuel.tracking.dto.AddFuelRequest;
 import com.fuel.tracking.dto.ApiResponse;
+import com.fuel.tracking.dto.FuelEntryResponse;
 import com.fuel.tracking.dto.FuelStatsResponse;
 import com.fuel.tracking.mapper.FuelMapper;
 import com.fuel.tracking.model.FuelEntry;
@@ -27,15 +28,17 @@ public class FuelController {
      * Add a fuel entry for a specific car
      */
     @PostMapping
-    public ResponseEntity<ApiResponse<Object>> addFuelEntry(
+    public ResponseEntity<ApiResponse<FuelEntryResponse>> addFuelEntry(
             @PathVariable("carId") Long carId,
             @Valid @RequestBody AddFuelRequest request) {
 
         FuelEntry fuelEntry = FuelMapper.toEntity(request);
-        fuelService.addFuelEntry(carId, fuelEntry);
+        FuelEntry createdEntry = fuelService.addFuelEntry(carId, fuelEntry);
+
+        FuelEntryResponse response = mapToFuelEntryResponse(createdEntry);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success("Fuel entry added successfully"));
+                .body(ApiResponse.success("Fuel entry added successfully", response));
     }
 
     /**
@@ -63,5 +66,18 @@ public class FuelController {
                 stats.getTotalEntries(),
                 stats.getAveragePricePerLiter(),
                 stats.getCostPer100km());
+    }
+
+    /**
+     * Helper method for mapping FuelEntry to DTO
+     */
+    private FuelEntryResponse mapToFuelEntryResponse(FuelEntry entry) {
+        return new FuelEntryResponse(
+                entry.getId(),
+                entry.getLiters(),
+                entry.getPricePerLiter(),
+                entry.getTotalCost(),
+                entry.getOdometer(),
+                entry.getTimestamp());
     }
 }

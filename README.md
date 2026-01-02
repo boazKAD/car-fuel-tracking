@@ -52,7 +52,7 @@ car-fuel-tracking/
 
 ```bash
 # Build all modules
-mvn clean package -DskipTests
+mvn clean package 
 
 # Build only backend
 cd backend
